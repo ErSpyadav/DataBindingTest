@@ -44,14 +44,8 @@ public class LoginFragmentTest {
         FrameLayout frameLayout =activity.findViewById(R.id.fragment_container);
         Assert.assertNotNull(frameLayout);
         activity.getSupportFragmentManager().beginTransaction().add(frameLayout.getId(),new LoginFragment()).commitAllowingStateLoss();
-        //getInstrumentation().waitForIdleSync();
         getInstrumentation().waitForIdleSync();
 
-        View view = loginFragment.getView().findViewById(R.id.phone_number);
-        Assert.assertNotNull(view);
-//        onView(withId(R.id.phone_number)).check(matches(isDisplayed()));
-//        onView(withId(R.id.password)).check(matches(isDisplayed()));
-//        onView(withId(R.id.login_btn)).check(matches(isDisplayed()));
     }
 
     @After
