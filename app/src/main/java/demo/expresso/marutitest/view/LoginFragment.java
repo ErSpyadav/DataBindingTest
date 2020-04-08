@@ -9,27 +9,24 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.android.material.textfield.TextInputLayout;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import demo.expresso.marutitest.viewmodel.LoginViewModel;
 import demo.expresso.marutitest.R;
+import demo.expresso.marutitest.databinding.LoginFragmentBinding;
 import demo.expresso.marutitest.model.User;
 import demo.expresso.marutitest.utils.ValidationUtils;
-import demo.expresso.marutitest.databinding.LoginFragmentBinding;
+import demo.expresso.marutitest.viewmodel.LoginViewModel;
 
 public class LoginFragment extends Fragment {
 
-    EditText phone;
-    EditText password;
-    Button loginBtn;
-    boolean isValidPhone, isValidPass;
-    LoginViewModel mViewModel;
-
-    TextInputLayout input1, input2;
+    private EditText phone;
+    private EditText password;
+    private Button loginBtn;
+    private boolean isValidPhone, isValidPass;
 
     public static LoginFragment newInstance() {
         return new LoginFragment();
@@ -41,7 +38,7 @@ public class LoginFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         LoginFragmentBinding binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false);
         User user = new User("", "");
-        mViewModel = ((MainActivity) getActivity()).getmViewModel();
+        LoginViewModel mViewModel = ((MainActivity) Objects.requireNonNull(getActivity())).getmViewModel();
         mViewModel.setActivity(getActivity());
         binding.setUser(user);
         binding.setViewModel(mViewModel);
@@ -57,9 +54,9 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        phone = (EditText) view.findViewById(R.id.phone_number);
-        password = (EditText) view.findViewById(R.id.password);
-        loginBtn = (Button) view.findViewById(R.id.login_btn);
+        phone = view.findViewById(R.id.phone_number);
+        password = view.findViewById(R.id.password);
+        loginBtn = view.findViewById(R.id.login_btn);
         phone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -102,9 +99,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                isValidPass = false;
-                if (ValidationUtils.isPassword(password))
-                    isValidPass = true;
+                isValidPass = ValidationUtils.isPassword(password);
                 enableButton();
             }
         });
@@ -112,9 +107,7 @@ public class LoginFragment extends Fragment {
         password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                isValidPass = false;
-                if (ValidationUtils.isPassword(password))
-                    isValidPass = true;
+                isValidPass = ValidationUtils.isPassword(password);
                 enableButton();
 
             }
@@ -123,7 +116,7 @@ public class LoginFragment extends Fragment {
 
     }
 
-    public void enableButton() {
+    private void enableButton() {
         if (isValidPhone && isValidPass)
             loginBtn.setEnabled(true);
         else
