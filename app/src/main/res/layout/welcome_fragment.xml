@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data >
+
+        <variable
+            name="viewModel"
+            type="demo.expresso.marutitest.viewmodel.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:padding="@dimen/dp_30">
+    <TextView
+        android:id="@+id/welcome_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_header"
+        android:textStyle="italic"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/welcome_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="7676779531"
+        android:textStyle="italic"
+        android:textColor="@color/blue_dark"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="@{viewModel.phone}"
+        app:layout_constraintTop_toBottomOf="@id/welcome_header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

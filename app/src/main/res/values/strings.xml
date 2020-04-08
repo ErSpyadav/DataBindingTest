@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MarutiTest</string>
+    <string name="phone_hint">enter mobile number</string>
+    <string name="enter_password">enter password</string>
+    <string name="btn_login">Login</string>
+    <string name="email_hint">abc@gmail.com</string>
+    <string name="welcome_header">Welcome in Maruti Project</string>
+</resources>

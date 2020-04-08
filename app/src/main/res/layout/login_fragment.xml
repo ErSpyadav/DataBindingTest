@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+        <data >
+
+            <variable
+                name="user"
+                type="demo.expresso.marutitest.model.User" />
+            <variable
+                name="viewModel"
+                type="demo.expresso.marutitest.viewmodel.LoginViewModel" />
+        </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/sky"
+        android:padding="@dimen/dp_30">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:padding="@dimen/dp_10"
+            app:layout_constraintHeight_percent="0.7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <EditText
+                android:id="@+id/phone_number"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_60"
+                android:layout_marginTop="@dimen/dp_60"
+                android:autofillHints="@string/email_hint"
+                android:background="@drawable/selector_edittext"
+                android:hint="@string/phone_hint"
+                android:padding="@dimen/dp_10"
+                android:text="@={user.phone}"
+                android:inputType="number"
+                android:maxLength="10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="o"
+                tools:ignore="TextFields" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_60"
+                android:layout_marginTop="@dimen/dp_20"
+                android:autofillHints="o"
+                android:background="@drawable/selector_edittext"
+                android:hint="@string/enter_password"
+                android:padding="@dimen/dp_10"
+                android:maxLength="10"
+                android:text = "@={user.password}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phone_number"
+                tools:targetApi="o" />
+<!--            android:inputType="textPassword"-->
+
+            <Button
+                android:id="@+id/login_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="@string/btn_login"
+                android:onClick="@{()-> viewModel.onLoginClicked(user)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="#fff"
+                android:enabled="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/password"
+                android:background="@drawable/selector_button"
+
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
